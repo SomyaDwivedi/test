@@ -12,7 +12,6 @@ import {
 } from '@ionic/angular/standalone';
 import { AqhiService } from '../../services/aqhi.service';
 
-// ⬇️ Inline the interface here (do NOT import from models)
 interface OntarioAqhiEntry {
   city: string;
   aqhi: number;
@@ -33,8 +32,8 @@ interface OntarioAqhiEntry {
     IonLabel,
     IonNote,
   ],
-  templateUrl: './ontario-aqhi.component.html',
-  styleUrls: ['./ontario-aqhi.component.scss'],
+  templateUrl: './ontarioAQ.component.html',
+  styleUrls: ['./ontarioAQ.component.scss'],
 })
 export class OntarioAqhiComponent implements OnInit {
   loading = true;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // ⬅ add this
+import { CommonModule } from '@angular/common'; 
 import {
   IonHeader,
   IonToolbar,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-// inline models
+
 export interface OntarioAqhiEntry {
   city: string;
   aqhi: number;

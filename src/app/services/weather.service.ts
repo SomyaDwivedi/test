@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-// inline model
+
 export interface NationalWeatherSummary {
   source: string;
   downloadedAt: string;

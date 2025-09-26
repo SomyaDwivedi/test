@@ -53,17 +53,17 @@ export class OntarioPage implements OnInit {
 
   async ngOnInit() {
     const ds = await this.aqhi.getOntarioDataset();
-    // use the exact keys defined by the service type
+   
     this.datasetNote = ds.source;
     this.datasetTime = ds.downloadedAt;
     this.records = ds.records;
 
-    // optional: show any message already set
+ 
     const peek = this.msg.getMessage();
     if (peek) this.incomingMessage = peek;
   }
 
-  // fires whenever this tab becomes active
+
   ionViewWillEnter() {
     const m = this.msg.takeMessage();
     if (m) this.incomingMessage = m;

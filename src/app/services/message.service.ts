@@ -8,14 +8,13 @@ export class MessageService {
     this._message = msg;
   }
 
-  /** Read once and clear (prevents stale messages) */
+  
   takeMessage(): string | null {
     const m = this._message;
     this._message = null;
     return m;
   }
 
-  /** Optional: peek without clearing */
   getMessage(): string | null {
     return this._message;
   }

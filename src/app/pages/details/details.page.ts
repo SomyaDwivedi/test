@@ -13,7 +13,7 @@ import {
   IonCardContent,
   IonNote,
 } from '@ionic/angular/standalone';
-import { OntarioAqhiComponent } from '../../components/ontario-aqhi/ontario-aqhi.component';
+import { OntarioAqhiComponent } from '../../components/ontarioAQ/ontarioAQ.component';
 import { CommonModule } from '@angular/common';
 import { MessageService } from '../../services/message.service';
 
@@ -47,7 +47,6 @@ export class DetailsPage implements OnInit {
     this.rec = history.state?.record ?? null; // first load
   }
 
-  // 🔁 runs whenever you navigate back to this page
   ionViewWillEnter() {
     const fresh = history.state?.record;
     if (fresh) this.rec = fresh;
