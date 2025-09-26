@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 import {
   IonHeader,
   IonToolbar,
@@ -11,13 +11,13 @@ import {
   IonCardContent,
   IonNote,
 } from '@ionic/angular/standalone';
-import { WeatherService } from '../../services/weather.service';
+import { WeatherService } from '../../services/weatherComponent.service';
 
 @Component({
   selector: 'app-countryOverview',
   standalone: true,
-  templateUrl: './countryOverview.page.html',
-  styleUrls: ['./countryOverview.page.scss'],
+  templateUrl: './Canada.page.html',
+  styleUrls: ['./Canada.page.scss'],
   imports: [
     CommonModule, // ⬅ add this
     IonHeader,

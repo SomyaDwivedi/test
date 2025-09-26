@@ -6,12 +6,12 @@
 
 <ion-content>
   <ion-note *ngIf="incomingMessage" style="margin: 10px 12px">
-    <h3>Incoming Message: {{ incomingMessage }}</h3>
+    <h3>{{ incomingMessage }}</h3>
   </ion-note>
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>City Weather</ion-card-title>
+      <ion-card-title>Ontario Weather</ion-card-title>
       <ion-note>Source: {{ datasetNote }} • Time: {{ datasetTime }}</ion-note>
     </ion-card-header>
 
@@ -26,7 +26,6 @@
           <ion-label>{{ r.city }}</ion-label>
           <ion-note slot="end">
             {{ r.temperatureC }}°C • AQHI {{ r.aqhi }}
-            
           </ion-note>
         </ion-item>
       </ion-list>

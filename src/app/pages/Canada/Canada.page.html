@@ -1,16 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Canada Tab</ion-title>
+    <ion-title>Canada</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
   <ion-card *ngIf="!loading && data as d">
     <ion-card-header
-      ><ion-card-title
-        >National Weather Summary</ion-card-title
-      ></ion-card-header
+      ><ion-card-title>Canada Weather Average</ion-card-title></ion-card-header
     >
     <ion-card-content>
       <p>Avg Temp: {{ d.avgTempC }} °C</p>

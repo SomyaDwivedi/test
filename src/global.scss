@@ -1,6 +1,6 @@
-/* ──────────────────────────────────────────────
-   Ionic base imports (keep these at the top)
-   ────────────────────────────────────────────── */
+/* ╔════════════════════════════════════════════════════════════╗
+   ║  Ionic Core (keep at top)                                  ║
+   ╚════════════════════════════════════════════════════════════╝ */
 @import "@ionic/angular/css/core.css";
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
@@ -11,242 +11,408 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-/* ──────────────────────────────────────────────
-   Design tokens
-   ────────────────────────────────────────────── */
+/* ╔════════════════════════════════════════════════════════════╗
+   ║  Design Tokens (new naming + values)                       ║
+   ╚════════════════════════════════════════════════════════════╝ */
 :root {
-  --radius-lg: 16px;
-  --radius-md: 12px;
+  /* Radii */
+  --radii-xs: 6px;
+  --radii-sm: 10px;
+  --radii-md: 14px;
+  --radii-xl: 18px;
 
-  --ring: 1px solid var(--ion-color-step-150);
+  /* Borders & rings */
+  --hairline: 1px solid
+    color-mix(in oklab, var(--ion-color-step-200) 65%, transparent);
+  --soft-ring: 0 0 0 2px
+    color-mix(in oklab, var(--ion-color-primary) 32%, transparent);
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 6px 22px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.1);
+  /* Elevation (lighter than your previous) */
+  --elev-1: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --elev-2: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --elev-3: 0 10px 24px rgba(0, 0, 0, 0.12);
 
-  /* Tab colors */
-  --tab-active: var(--ion-color-primary);
-  --tab-muted: var(--ion-color-medium);
+  /* Surfaces */
+  --surface: var(--ion-background-color, #ffffff);
+  --surface-muted: color-mix(in oklab, var(--ion-color-step-50) 70%, #fff);
+  --surface-subtle: color-mix(in oklab, var(--ion-color-step-100) 50%, #fff);
+
+  /* Text helpers */
+  --text-dim: color-mix(
+    in oklab,
+    var(--ion-text-color) 65%,
+    var(--ion-color-medium)
+  );
+
+  /* Tab palette (changed) */
+  --tab-on: var(--ion-color-primary);
+  --tab-off: color-mix(
+    in oklab,
+    var(--ion-color-medium) 80%,
+    var(--ion-text-color)
+  );
+  --tab-underline: color-mix(
+    in oklab,
+    var(--ion-color-primary) 55%,
+    var(--ion-color-primary-tint)
+  );
 }
 
-/* Dark-mode subtle tweaks */
+/* Optional dark preference: keep the same vibe but not identical */
 @media (prefers-color-scheme: dark) {
   :root {
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
-    --shadow-md: 0 6px 22px rgba(0, 0, 0, 0.45);
-    --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.5);
+    --surface: #0f1115;
+    --surface-muted: #141822;
+    --surface-subtle: #10131b;
+
+    --elev-1: 0 1px 4px rgba(0, 0, 0, 0.45);
+    --elev-2: 0 6px 14px rgba(0, 0, 0, 0.5);
+    --elev-3: 0 12px 28px rgba(0, 0, 0, 0.55);
+
+    --text-dim: color-mix(
+      in oklab,
+      var(--ion-text-color) 70%,
+      var(--ion-color-medium)
+    );
+    --tab-off: color-mix(
+      in oklab,
+      var(--ion-color-medium) 70%,
+      var(--ion-text-color)
+    );
   }
 }
 
-/* ──────────────────────────────────────────────
-   Global layout & typography
-   ────────────────────────────────────────────── */
+/* ╔════════════════════════════════════════════════════════════╗
+   ║  App Baseline                                              ║
+   ╚════════════════════════════════════════════════════════════╝ */
 html,
 body,
 ion-app {
   height: 100%;
+  background: var(--surface);
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  letter-spacing: 0.1px;
 }
 
-/* Consistent padding across pages */
+/* Global content padding with safe-area */
 ion-content {
-  --padding-top: 12px;
-  --padding-end: 12px;
-  --padding-bottom: calc(20px + var(--ion-safe-area-bottom));
-  --padding-start: 12px;
+  --padding-top: 14px;
+  --padding-start: 14px;
+  --padding-end: 14px;
+  --padding-bottom: calc(18px + var(--ion-safe-area-bottom));
 }
 
-/* Readable paragraphs inside cards/sections */
-ion-card-content p,
-.content p {
-  margin: 6px 0;
-  font-size: 15px;
-  line-height: 1.4;
+/* Paragraph rhythm */
+.content p,
+ion-card-content p {
+  margin: 8px 0;
+  font-size: 15.5px;
+  line-height: 1.5;
 }
 
-/* Muted helper text */
-ion-note,
-.muted {
-  color: var(--ion-color-medium);
+/* Muted helper */
+.text-muted,
+ion-note {
+  color: var(--text-dim);
   font-size: 13px;
 }
 
-/* ──────────────────────────────────────────────
-   Cards
-   ────────────────────────────────────────────── */
+/* Focus styles (keyboard-friendly) */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--soft-ring);
+  transition: box-shadow 120ms ease-out;
+  border-radius: var(--radii-xs);
+}
+
+/* ╔════════════════════════════════════════════════════════════╗
+   ║  Cards (new style)                                         ║
+   ╚════════════════════════════════════════════════════════════╝ */
 ion-card {
-  margin: 12px;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
+  margin: 10px 12px;
+  border-radius: var(--radii-xl);
+  background: var(--surface-muted);
+  box-shadow: var(--elev-1);
+  border: var(--hairline);
+  overflow: clip;
 }
 
 ion-card-title {
   font-weight: 800;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.25px;
+  color: #fff;
 }
 
-/* Utility card class for non-Ionic blocks */
-.app-card {
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  background: var(--ion-color-step-50);
+/* Generic “surface” block for non-Ionic containers */
+.surface {
+  background: var(--surface-muted);
+  border-radius: var(--radii-md);
+  border: var(--hairline);
+  box-shadow: var(--elev-1);
   padding: 12px;
 }
 
-/* ──────────────────────────────────────────────
-   Lists & items
-   ────────────────────────────────────────────── */
+/* ╔════════════════════════════════════════════════════════════╗
+   ║  Lists & Items (zebra + hover line)                        ║
+   ╚════════════════════════════════════════════════════════════╝ */
 ion-list {
-  margin: 8px 8px 16px;
-  border: var(--ring);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  background: var(--ion-background-color, transparent);
+  margin: 10px 8px 18px;
+  border-radius: var(--radii-md);
+  border: var(--hairline);
+  background: var(--surface);
+  overflow: clip;
 }
 
 ion-item {
+  --min-height: 52px;
   --padding-start: 14px;
   --inner-padding-end: 14px;
-  --min-height: 48px;
+  position: relative;
+  isolation: isolate;
 }
 
-ion-item:hover {
-  background: color-mix(in oklab, var(--ion-color-primary) 10%, transparent);
-  cursor: pointer;
+ion-item:nth-child(2n) {
+  background: var(--surface-subtle);
+}
+
+/* Hover/press indicator (thin left rule) */
+ion-item::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 0;
+  border-left: 0 solid var(--ion-color-primary);
+  transition: border-left-width 120ms ease;
+  pointer-events: none;
+  z-index: -1;
+}
+ion-item:hover::before {
+  border-left-width: 3px;
 }
 
 ion-label {
   font-weight: 600;
+  letter-spacing: 0.15px;
 }
 
-/* Simple row layout helpers (for key/value lines) */
-.row {
+/* Key/value rows (renamed to kv-… to avoid overlap with your old .row/.label/.val) */
+.kv-row {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  border-bottom: 1px dashed var(--ion-color-step-200);
-  padding: 6px 0;
+  padding: 8px 0;
+  border-bottom: 1px dashed
+    color-mix(in oklab, var(--ion-color-step-200) 70%, transparent);
 }
-.row:last-child {
-  border-bottom: none;
+.kv-row:last-child {
+  border-bottom: 0;
 }
-.label {
-  color: var(--ion-color-medium);
+.kv-key {
+  color: var(--text-dim);
 }
-.val {
-  font-weight: 600;
+.kv-val {
+  font-weight: 700;
 }
 
-/* ──────────────────────────────────────────────
-   Tabs (bottom bar)
-   ────────────────────────────────────────────── */
+/* ╔════════════════════════════════════════════════════════════╗
+   ║  Tab Bar (underline animation + compact pill)              ║
+   ╚════════════════════════════════════════════════════════════╝ */
 ion-tab-bar {
-  border-top: 1px solid var(--ion-color-step-150);
-  padding-inline: 4px;
-  backdrop-filter: saturate(1.2) blur(6px);
-  z-index: 5; /* stays above scrolling content */
-  position: relative; /* avoid accidental overlay issues */
+  border-top: var(--hairline);
+  background: color-mix(in oklab, var(--surface) 85%, transparent);
+  backdrop-filter: blur(6px) saturate(1.05);
+  padding-inline: 6px;
 }
 
 ion-tab-button {
-  --color: var(--tab-muted);
-  --color-selected: var(--tab-active);
-  --padding-start: 8px;
-  --padding-end: 8px;
+  --color: var(--tab-off);
+  --color-selected: var(--tab-on);
+  --padding-start: 10px;
+  --padding-end: 10px;
   --ripple-color: var(--ion-color-primary);
+  position: relative;
+  transition: transform 120ms ease;
 
   ion-icon {
-    font-size: 20px;
+    font-size: 19px;
   }
   ion-label {
-    font-weight: 700;
+    font-weight: 800;
+    font-size: 12.5px;
+  }
+
+  /* Underline indicator */
+  &::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 6px;
+    height: 2px;
+    background: transparent;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 140ms ease, background 140ms ease;
+    border-radius: 999px;
   }
 }
 
 ion-tab-button.tab-selected {
-  background: color-mix(in oklab, var(--ion-color-primary) 12%, transparent);
-  border-radius: 12px;
+  background: color-mix(in oklab, var(--ion-color-primary) 8%, transparent);
+  border-radius: var(--radii-sm);
+  transform: translateY(-1px);
+
+  &::after {
+    background: var(--tab-underline);
+    transform: scaleX(1);
+  }
 }
 
-/* ──────────────────────────────────────────────
-   Buttons (generic pill)
-   ────────────────────────────────────────────── */
-.pill-btn,
-button.pill-btn,
-ion-button.pill-btn {
-  --background: color-mix(in oklab, var(--ion-color-primary) 15%, transparent);
+/* ╔════════════════════════════════════════════════════════════╗
+   ║  Buttons (new “chip-btn” pattern)                          ║
+   ╚════════════════════════════════════════════════════════════╝ */
+.chip-btn,
+button.chip-btn,
+ion-button.chip-btn {
+  --background: color-mix(in oklab, var(--ion-color-primary) 12%, transparent);
+  --border-radius: 9999px;
   --color: var(--ion-color-primary-contrast);
-  --border-radius: 999px;
-  --border-color: var(--ion-color-primary);
   --border-style: solid;
   --border-width: 1px;
-  font-weight: 700;
-  padding: 10px 14px;
+  --border-color: color-mix(
+    in oklab,
+    var(--ion-color-primary) 50%,
+    var(--ion-color-primary-tint)
+  );
+  font-weight: 800;
+  padding: 10px 16px;
+  letter-spacing: 0.2px;
+  box-shadow: var(--elev-1);
 }
 
-/* ──────────────────────────────────────────────
-   Badges (e.g., AQHI)
-   ────────────────────────────────────────────── */
-.badge {
+/* ╔════════════════════════════════════════════════════════════╗
+   ║  Status Tags (AQHI etc.)                                   ║
+   ╚════════════════════════════════════════════════════════════╝ */
+.tag {
   display: inline-block;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-weight: 800;
   font-size: 12px;
-  line-height: 1.6;
+  line-height: 1.5;
+  border: 1px solid currentColor;
 }
 
-.badge.low {
-  background: #e8f5e9;
+.tag--low {
   color: #1b5e20;
+  background: #eff8f1;
+  border-color: #c8e9cf;
 }
-.badge.moderate {
-  background: #fff8e1;
-  color: #bf360c;
+.tag--moderate {
+  color: #8a4b0c;
+  background: #fff4dc;
+  border-color: #ffe1a6;
 }
-.badge.high {
-  background: #ffebee;
-  color: #b71c1c;
+.tag--high {
+  color: #9b1c1c;
+  background: #ffe8ea;
+  border-color: #ffc9cf;
 }
 
-/* ──────────────────────────────────────────────
-   Utilities
-   ────────────────────────────────────────────── */
-.stack {
+/* ╔════════════════════════════════════════════════════════════╗
+   ║  Layout Utilities (new names)                              ║
+   ╚════════════════════════════════════════════════════════════╝ */
+.stack-gap-xs {
+  display: grid;
+  gap: 6px;
+}
+.stack-gap-sm {
   display: grid;
   gap: 10px;
 }
-.grid-2 {
+.stack-gap-md {
   display: grid;
-  gap: 10px;
+  gap: 14px;
+}
+
+.cols-2 {
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
-.grid-3 {
+.cols-3 {
   display: grid;
-  gap: 10px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
 }
 
-.divider {
+.rule {
   height: 1px;
-  background: var(--ion-color-step-200);
-  margin: 8px 0;
+  background: color-mix(in oklab, var(--ion-color-step-200) 70%, transparent);
+  margin: 10px 0;
+  border-radius: 1px;
 }
 
-.sr-only {
+/* Better, accessible visually-hidden helper */
+.visually-hidden {
   position: absolute !important;
-  height: 1px;
   width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  white-space: nowrap;
-  border: 0;
-  padding: 0;
+  height: 1px;
   margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
+  clip-path: inset(50%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+/* ╔════════════════════════════════════════════════════════════╗
+   ║  Page-Specific Hooks (optional, rename-friendly)           ║
+   ╚════════════════════════════════════════════════════════════╝ */
+/* Details page container */
+.page-details {
+  padding: 12px;
+
+  .details-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .back-ghost {
+    --border-radius: 999px;
+    --background: transparent;
+    --color: var(--ion-text-color);
+    --border-width: 1px;
+    --border-style: solid;
+    --border-color: color-mix(
+      in oklab,
+      var(--ion-color-step-200) 75%,
+      transparent
+    );
+  }
+
+  .card-slab {
+    @extend .surface;
+    display: grid;
+    gap: 10px;
+  }
+}
+
+.city-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: var(--surface-subtle);
+  border: var(--hairline);
+  font-weight: 700;
+  font-size: 12.5px;
 }

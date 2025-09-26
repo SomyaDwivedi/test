@@ -15,8 +15,11 @@ import {
   IonCardTitle,
   IonCardContent,
 } from '@ionic/angular/standalone';
-import { AqhiService, OntarioDatasetRecord } from '../../services/aqhi.service';
-import { MessageService } from '../../services/message.service';
+import {
+  AqhiService,
+  OntarioDatasetRecord,
+} from '../../services/aqhiComponent.service';
+import { MessageService } from '../../services/messageComponent.service';
 
 @Component({
   selector: 'app-ontario',
@@ -53,16 +56,14 @@ export class OntarioPage implements OnInit {
 
   async ngOnInit() {
     const ds = await this.aqhi.getOntarioDataset();
-   
+
     this.datasetNote = ds.source;
     this.datasetTime = ds.downloadedAt;
     this.records = ds.records;
 
- 
     const peek = this.msg.getMessage();
     if (peek) this.incomingMessage = peek;
   }
-
 
   ionViewWillEnter() {
     const m = this.msg.takeMessage();

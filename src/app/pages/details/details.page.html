@@ -12,7 +12,7 @@
 
   <ion-card *ngIf="rec">
     <ion-card-header>
-      <ion-card-title>{{ rec.city }}</ion-card-title>
+      <ion-card-title>City: {{ rec.city }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <p>Temperature: {{ rec.temperatureC }} °C</p>
@@ -20,6 +20,5 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-note style="margin: 10px 12px;">Tap to send a message to Ontario tab.</ion-note>
   <button class="pill-btn" (click)="sendMessage()">Send Message</button>
 </ion-content>

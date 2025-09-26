@@ -10,7 +10,7 @@ import {
   IonLabel,
   IonNote,
 } from '@ionic/angular/standalone';
-import { AqhiService } from '../../services/aqhi.service';
+import { AqhiService } from '../../services/aqhiComponent.service';
 
 interface OntarioAqhiEntry {
   city: string;
@@ -32,8 +32,8 @@ interface OntarioAqhiEntry {
     IonLabel,
     IonNote,
   ],
-  templateUrl: './ontarioAQ.component.html',
-  styleUrls: ['./ontarioAQ.component.scss'],
+  templateUrl: './ontarioAqhi.component.html',
+  styleUrls: ['./ontarioAqhi.component.scss'],
 })
 export class OntarioAqhiComponent implements OnInit {
   loading = true;

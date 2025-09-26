@@ -1,11 +1,9 @@
 <ion-card>
   <ion-card-header>
-    <ion-card-title>Ontario Air Quality</ion-card-title>
+    <ion-card-title>Ontario AQHI</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <ion-note *ngIf="!loading"
-      >Source: {{ source }} • Time: {{ downloadedAt }}</ion-note
-    >
+    
     <ion-list>
       <ion-item *ngFor="let e of entries">
         <ion-label>{{ e.city }}</ion-label>
