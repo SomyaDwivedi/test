@@ -1,6 +1,6 @@
-/* ╔════════════════════════════════════════════════════════════╗
-   ║  Ionic Core (keep at top)                                  ║
-   ╚════════════════════════════════════════════════════════════╝ */
+/* ──────────────────────────────────────────────
+   Ionic base imports
+   ────────────────────────────────────────────── */
 @import "@ionic/angular/css/core.css";
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
@@ -11,408 +11,99 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-/* ╔════════════════════════════════════════════════════════════╗
-   ║  Design Tokens (new naming + values)                       ║
-   ╚════════════════════════════════════════════════════════════╝ */
+/* ──────────────────────────────────────────────
+   Design tokens
+   ────────────────────────────────────────────── */
 :root {
-  /* Radii */
-  --radii-xs: 6px;
-  --radii-sm: 10px;
-  --radii-md: 14px;
-  --radii-xl: 18px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
 
-  /* Borders & rings */
-  --hairline: 1px solid
-    color-mix(in oklab, var(--ion-color-step-200) 65%, transparent);
-  --soft-ring: 0 0 0 2px
-    color-mix(in oklab, var(--ion-color-primary) 32%, transparent);
+  --ring: 1px solid var(--ion-color-step-150);
 
-  /* Elevation (lighter than your previous) */
-  --elev-1: 0 1px 4px rgba(0, 0, 0, 0.06);
-  --elev-2: 0 4px 14px rgba(0, 0, 0, 0.08);
-  --elev-3: 0 10px 24px rgba(0, 0, 0, 0.12);
-
-  /* Surfaces */
-  --surface: var(--ion-background-color, #ffffff);
-  --surface-muted: color-mix(in oklab, var(--ion-color-step-50) 70%, #fff);
-  --surface-subtle: color-mix(in oklab, var(--ion-color-step-100) 50%, #fff);
-
-  /* Text helpers */
-  --text-dim: color-mix(
-    in oklab,
-    var(--ion-text-color) 65%,
-    var(--ion-color-medium)
-  );
-
-  /* Tab palette (changed) */
-  --tab-on: var(--ion-color-primary);
-  --tab-off: color-mix(
-    in oklab,
-    var(--ion-color-medium) 80%,
-    var(--ion-text-color)
-  );
-  --tab-underline: color-mix(
-    in oklab,
-    var(--ion-color-primary) 55%,
-    var(--ion-color-primary-tint)
-  );
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 6px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Optional dark preference: keep the same vibe but not identical */
+/* ──────────────────────────────────────────────
+   Base text & backgrounds
+   ────────────────────────────────────────────── */
+html,
+body {
+  font-family: var(--ion-font-family, "Inter", sans-serif);
+  background: var(--ion-background-color, #fff);
+  color: var(--ion-text-color, #000);
+}
+
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --surface: #0f1115;
-    --surface-muted: #141822;
-    --surface-subtle: #10131b;
-
-    --elev-1: 0 1px 4px rgba(0, 0, 0, 0.45);
-    --elev-2: 0 6px 14px rgba(0, 0, 0, 0.5);
-    --elev-3: 0 12px 28px rgba(0, 0, 0, 0.55);
-
-    --text-dim: color-mix(
-      in oklab,
-      var(--ion-text-color) 70%,
-      var(--ion-color-medium)
-    );
-    --tab-off: color-mix(
-      in oklab,
-      var(--ion-color-medium) 70%,
-      var(--ion-text-color)
-    );
+  body {
+    background: #121212;
+    color: #f5f5f5;
   }
 }
 
-/* ╔════════════════════════════════════════════════════════════╗
-   ║  App Baseline                                              ║
-   ╚════════════════════════════════════════════════════════════╝ */
-html,
-body,
-ion-app {
-  height: 100%;
-  background: var(--surface);
+/* ──────────────────────────────────────────────
+   Headers / Toolbars (pink theme)
+   ────────────────────────────────────────────── */
+ion-toolbar {
+  --background: #e91e63; /* pink */
+  --color: #fff;
 }
 
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  letter-spacing: 0.1px;
-}
-
-/* Global content padding with safe-area */
-ion-content {
-  --padding-top: 14px;
-  --padding-start: 14px;
-  --padding-end: 14px;
-  --padding-bottom: calc(18px + var(--ion-safe-area-bottom));
-}
-
-/* Paragraph rhythm */
-.content p,
-ion-card-content p {
-  margin: 8px 0;
-  font-size: 15.5px;
-  line-height: 1.5;
-}
-
-/* Muted helper */
-.text-muted,
-ion-note {
-  color: var(--text-dim);
-  font-size: 13px;
-}
-
-/* Focus styles (keyboard-friendly) */
-:focus-visible {
-  outline: none;
-  box-shadow: var(--soft-ring);
-  transition: box-shadow 120ms ease-out;
-  border-radius: var(--radii-xs);
-}
-
-/* ╔════════════════════════════════════════════════════════════╗
-   ║  Cards (new style)                                         ║
-   ╚════════════════════════════════════════════════════════════╝ */
-ion-card {
-  margin: 10px 12px;
-  border-radius: var(--radii-xl);
-  background: var(--surface-muted);
-  box-shadow: var(--elev-1);
-  border: var(--hairline);
-  overflow: clip;
-}
-
-ion-card-title {
-  font-weight: 800;
-  letter-spacing: 0.25px;
+ion-title {
+  font-weight: 600;
   color: #fff;
 }
 
-/* Generic “surface” block for non-Ionic containers */
-.surface {
-  background: var(--surface-muted);
-  border-radius: var(--radii-md);
-  border: var(--hairline);
-  box-shadow: var(--elev-1);
-  padding: 12px;
+/* ──────────────────────────────────────────────
+   Buttons
+   ────────────────────────────────────────────── */
+ion-button {
+  --border-radius: var(--radius-md);
+  font-weight: 500;
 }
 
-/* ╔════════════════════════════════════════════════════════════╗
-   ║  Lists & Items (zebra + hover line)                        ║
-   ╚════════════════════════════════════════════════════════════╝ */
-ion-list {
-  margin: 10px 8px 18px;
-  border-radius: var(--radii-md);
-  border: var(--hairline);
-  background: var(--surface);
-  overflow: clip;
+/* ──────────────────────────────────────────────
+   Flat UI components
+   ────────────────────────────────────────────── */
+.app-panel {
+  background: var(--ion-background-color, #fff);
+  border: 1px solid var(--ion-color-step-150);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: none;
 }
 
-ion-item {
-  --min-height: 52px;
-  --padding-start: 14px;
-  --inner-padding-end: 14px;
-  position: relative;
-  isolation: isolate;
-}
-
-ion-item:nth-child(2n) {
-  background: var(--surface-subtle);
-}
-
-/* Hover/press indicator (thin left rule) */
-ion-item::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 0 0;
-  border-left: 0 solid var(--ion-color-primary);
-  transition: border-left-width 120ms ease;
-  pointer-events: none;
-  z-index: -1;
-}
-ion-item:hover::before {
-  border-left-width: 3px;
-}
-
-ion-label {
-  font-weight: 600;
-  letter-spacing: 0.15px;
-}
-
-/* Key/value rows (renamed to kv-… to avoid overlap with your old .row/.label/.val) */
-.kv-row {
+.app-list {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 8px 0;
-  border-bottom: 1px dashed
-    color-mix(in oklab, var(--ion-color-step-200) 70%, transparent);
-}
-.kv-row:last-child {
-  border-bottom: 0;
-}
-.kv-key {
-  color: var(--text-dim);
-}
-.kv-val {
-  font-weight: 700;
+  flex-direction: column;
+  gap: 8px;
 }
 
-/* ╔════════════════════════════════════════════════════════════╗
-   ║  Tab Bar (underline animation + compact pill)              ║
-   ╚════════════════════════════════════════════════════════════╝ */
-ion-tab-bar {
-  border-top: var(--hairline);
-  background: color-mix(in oklab, var(--surface) 85%, transparent);
-  backdrop-filter: blur(6px) saturate(1.05);
-  padding-inline: 6px;
-}
+.app-list-item {
+  background: var(--ion-background-color, #fff);
+  border: 1px solid var(--ion-color-step-150);
+  border-radius: 8px;
+  padding: 12px 14px;
+  text-align: left;
+  cursor: pointer;
 
-ion-tab-button {
-  --color: var(--tab-off);
-  --color-selected: var(--tab-on);
-  --padding-start: 10px;
-  --padding-end: 10px;
-  --ripple-color: var(--ion-color-primary);
-  position: relative;
-  transition: transform 120ms ease;
-
-  ion-icon {
-    font-size: 19px;
-  }
-  ion-label {
-    font-weight: 800;
-    font-size: 12.5px;
-  }
-
-  /* Underline indicator */
-  &::after {
-    content: "";
-    position: absolute;
-    left: 10px;
-    right: 10px;
-    bottom: 6px;
-    height: 2px;
-    background: transparent;
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 140ms ease, background 140ms ease;
-    border-radius: 999px;
+  &:active {
+    transform: translateY(1px);
   }
 }
 
-ion-tab-button.tab-selected {
-  background: color-mix(in oklab, var(--ion-color-primary) 8%, transparent);
-  border-radius: var(--radii-sm);
-  transform: translateY(-1px);
-
-  &::after {
-    background: var(--tab-underline);
-    transform: scaleX(1);
-  }
-}
-
-/* ╔════════════════════════════════════════════════════════════╗
-   ║  Buttons (new “chip-btn” pattern)                          ║
-   ╚════════════════════════════════════════════════════════════╝ */
-.chip-btn,
-button.chip-btn,
-ion-button.chip-btn {
-  --background: color-mix(in oklab, var(--ion-color-primary) 12%, transparent);
-  --border-radius: 9999px;
-  --color: var(--ion-color-primary-contrast);
-  --border-style: solid;
-  --border-width: 1px;
-  --border-color: color-mix(
-    in oklab,
-    var(--ion-color-primary) 50%,
-    var(--ion-color-primary-tint)
-  );
-  font-weight: 800;
-  padding: 10px 16px;
-  letter-spacing: 0.2px;
-  box-shadow: var(--elev-1);
-}
-
-/* ╔════════════════════════════════════════════════════════════╗
-   ║  Status Tags (AQHI etc.)                                   ║
-   ╚════════════════════════════════════════════════════════════╝ */
-.tag {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 9999px;
-  font-weight: 800;
-  font-size: 12px;
-  line-height: 1.5;
-  border: 1px solid currentColor;
-}
-
-.tag--low {
-  color: #1b5e20;
-  background: #eff8f1;
-  border-color: #c8e9cf;
-}
-.tag--moderate {
-  color: #8a4b0c;
-  background: #fff4dc;
-  border-color: #ffe1a6;
-}
-.tag--high {
-  color: #9b1c1c;
-  background: #ffe8ea;
-  border-color: #ffc9cf;
-}
-
-/* ╔════════════════════════════════════════════════════════════╗
-   ║  Layout Utilities (new names)                              ║
-   ╚════════════════════════════════════════════════════════════╝ */
-.stack-gap-xs {
+.app-grid {
   display: grid;
-  gap: 6px;
-}
-.stack-gap-sm {
-  display: grid;
-  gap: 10px;
-}
-.stack-gap-md {
-  display: grid;
-  gap: 14px;
-}
-
-.cols-2 {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-.cols-3 {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 12px;
 }
 
-.rule {
-  height: 1px;
-  background: color-mix(in oklab, var(--ion-color-step-200) 70%, transparent);
-  margin: 10px 0;
-  border-radius: 1px;
-}
-
-/* Better, accessible visually-hidden helper */
-.visually-hidden {
-  position: absolute !important;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  white-space: nowrap;
-  clip-path: inset(50%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
-}
-
-/* ╔════════════════════════════════════════════════════════════╗
-   ║  Page-Specific Hooks (optional, rename-friendly)           ║
-   ╚════════════════════════════════════════════════════════════╝ */
-/* Details page container */
-.page-details {
+.app-tile {
+  background: var(--ion-background-color, #fff);
+  border: 1px solid var(--ion-color-step-200);
+  border-radius: 10px;
   padding: 12px;
-
-  .details-head {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 12px;
-  }
-
-  .back-ghost {
-    --border-radius: 999px;
-    --background: transparent;
-    --color: var(--ion-text-color);
-    --border-width: 1px;
-    --border-style: solid;
-    --border-color: color-mix(
-      in oklab,
-      var(--ion-color-step-200) 75%,
-      transparent
-    );
-  }
-
-  .card-slab {
-    @extend .surface;
-    display: grid;
-    gap: 10px;
-  }
-}
-
-.city-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  border-radius: 9999px;
-  background: var(--surface-subtle);
-  border: var(--hairline);
-  font-weight: 700;
-  font-size: 12.5px;
+  text-align: center;
 }

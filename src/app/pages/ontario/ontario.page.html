@@ -5,10 +5,6 @@
 </ion-header>
 
 <ion-content>
-  <ion-note *ngIf="incomingMessage" style="margin: 10px 12px">
-    <h3>{{ incomingMessage }}</h3>
-  </ion-note>
-
   <ion-card>
     <ion-card-header>
       <ion-card-title>Ontario Weather</ion-card-title>
@@ -30,5 +26,8 @@
         </ion-item>
       </ion-list>
     </ion-card-content>
+    <ion-note *ngIf="incomingMessage" style="margin: 10px 12px">
+      <h3> {{ incomingMessage }}</h3>
+    </ion-note>
   </ion-card>
 </ion-content>

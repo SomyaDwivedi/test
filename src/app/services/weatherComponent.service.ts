@@ -12,7 +12,7 @@ export interface NationalWeatherSummary {
 @Injectable({ providedIn: 'root' })
 export class WeatherService {
   async getNationalSummary(): Promise<{ data: NationalWeatherSummary }> {
-    const res = await fetch('assets/data/countryOverview.json');
+    const res = await fetch('assets/data/Canada.json');
     const data = await res.json();
     return { data };
   }

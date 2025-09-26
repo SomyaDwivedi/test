@@ -54,7 +54,7 @@ export class DetailsPage implements OnInit {
 
   sendMessage() {
     const city = this.rec?.city ?? 'Ontario';
-    this.msg.setMessage(`${city} say's Hi !`);
+    this.msg.setMessage(`Message sent from: ${city} !`);
     this.router.navigate(['/ontario']);
   }
 }

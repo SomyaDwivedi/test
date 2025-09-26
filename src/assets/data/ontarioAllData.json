@@ -1,0 +1,11 @@
+{
+  "source": "Ontario Federal Data",
+  "downloadedAt": "2025-09-22T09:20:00AM",
+  "records": [
+    { "city": "London", "temperatureC": 9, "aqhi": 2 },
+    { "city": "Kingston", "temperatureC": 8, "aqhi": 3 },
+    { "city": "Mississauga", "temperatureC": 11, "aqhi": 4 },
+    { "city": "Thunder Bay", "temperatureC": 6, "aqhi": 2 },
+    { "city": "Niagara Falls", "temperatureC": 10, "aqhi": 5 }
+  ]
+}

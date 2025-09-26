@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-
 export interface OntarioAqhiEntry {
   city: string;
   aqhi: number;
@@ -20,7 +19,7 @@ export class AqhiService {
     downloadedAt: string;
     entries: OntarioAqhiEntry[];
   }> {
-    const res = await fetch('assets/data/ontarioAqhi.json');
+    const res = await fetch('assets/data/ontarioAirQuality.json');
     return res.json();
   }
 
@@ -29,7 +28,7 @@ export class AqhiService {
     downloadedAt: string;
     records: OntarioDatasetRecord[];
   }> {
-    const res = await fetch('assets/data/ontarioDataset.json');
+    const res = await fetch('assets/data/ontarioAllData.json');
     return res.json();
   }
 }
