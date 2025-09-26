@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ontario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-note *ngIf="incomingMessage" style="margin: 10px 12px">
+    <h3>Incoming Message: {{ incomingMessage }}</h3>
+  </ion-note>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>City Weather</ion-card-title>
+      <ion-note>Source: {{ datasetNote }} • Time: {{ datasetTime }}</ion-note>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item
+          *ngFor="let r of records"
+          (click)="openDetails(r)"
+          button
+          detail="true"
+        >
+          <ion-label>{{ r.city }}</ion-label>
+          <ion-note slot="end">
+            {{ r.temperatureC }}°C • AQHI {{ r.aqhi }}
+            
+          </ion-note>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
