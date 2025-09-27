@@ -44,7 +44,7 @@ export class DetailsPage implements OnInit {
   constructor(private router: Router, private msg: MessageService) {}
 
   ngOnInit() {
-    this.rec = history.state?.record ?? null; // first load
+    this.rec = history.state?.record ?? null;
   }
 
   ionViewWillEnter() {
