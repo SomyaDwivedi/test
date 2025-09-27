@@ -13,7 +13,7 @@ import {
   IonCardContent,
   IonNote,
 } from '@ionic/angular/standalone';
-import { OntarioAqhiComponent } from '../../components/ontarioAQ/ontarioAq.component';
+import { OntarioAqhiComponent } from '../../components/ontarioAQ/ontarioAQ.component';
 import { CommonModule } from '@angular/common';
 import { MessageService } from '../../services/message.service';
 
